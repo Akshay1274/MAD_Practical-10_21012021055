@@ -3,6 +3,7 @@ package com.example.mad_practical_10_21012021055
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -15,12 +16,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private var lat:Double = 0.0
+    private var log:Double = 0.0
+    private var title = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val obj = intent.getSerializableExtra("Object") as Person
+        lat = obj.latitude
+        log = obj.longitude
+        title = obj.name
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
